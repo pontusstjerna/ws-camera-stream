@@ -8,13 +8,12 @@ host = '192.168.25.115'
 port = 50005
 s.bind((host, port))
 
-inp = ""
-
 while inp != 'shutdown':
 
     #Basically set client to null
     client = None
-
+    inp = ""
+    
     s.listen(1)
     while client == None:
         client, addr = s.accept()
