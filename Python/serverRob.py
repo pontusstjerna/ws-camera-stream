@@ -10,7 +10,7 @@ s.bind((host, port))
 
 inp = ""
 
-while inp != 'shutdown\r\n':
+while inp != 'shutdown':
 
     #Basically set client to null
     client = None
@@ -21,12 +21,12 @@ while inp != 'shutdown\r\n':
         print ('Got connection from', addr)
         client.send('You are connected to RobotPi\n')
 
-    while inp != 'quit\r\n':
+    while inp != 'quit':
         inp = client.recv(64)
         print(inp)
         client.send('Received: ' + inp)
 
     print('User quit.')
-    client.send('Quiting. Thank you for driving me!')
+    client.send('You will now disconnect.\nThank you for driving me!')
     client.close()
     
