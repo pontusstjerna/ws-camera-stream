@@ -19,8 +19,7 @@ namespace RobotPiUI
                 s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 s.Connect(endPoint);
-                Send("User connected.");
-                return "Connected.";
+                return Send("User connected.") + Recieve();
 
             }catch(ArgumentException ae)
             {
@@ -43,13 +42,17 @@ namespace RobotPiUI
                 //Encode to byte array
                 byte[] msg = Encoding.ASCII.GetBytes(message);
 
-                //Send through socket
-                s.Send(msg);
+                try
+                {
+                    //Send through socket
+                    s.Send(msg);
 
-                //The recieved bytes
-                int recievedBytes = s.Receive(bytes);
-
-                return Encoding.ASCII.GetString(bytes, 0, recievedBytes);
+                    return Recieve();
+                }
+                catch(Exception e)
+                {
+                    return "Unable to send. You probably lost connection.";
+                }
             }
             else
             {
@@ -61,6 +64,21 @@ namespace RobotPiUI
         {
             s.Shutdown(SocketShutdown.Both);
             s.Close();
+        }
+
+        private string Recieve()
+        {
+            try
+            {
+                //The recieved bytes
+                int recievedBytes = s.Receive(bytes);
+
+                return Encoding.ASCII.GetString(bytes, 0, recievedBytes);
+            }
+            catch (Exception e)
+            {
+                return "Nothing to recieve!";
+            }
         }
 
     }

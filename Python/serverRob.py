@@ -8,7 +8,7 @@ host = '192.168.25.115'
 port = 50005
 s.bind((host, port))
 
-print('Starting RobotPI server.\n')
+print('Starting RobotPI server.\nWaiting for clients...')
 
 inp = ""
 
@@ -27,7 +27,8 @@ while inp != 'shutdown':
     while inp != 'quit':
         inp = client.recv(64)
         print(inp)
-        client.send('Received: ' + inp)
+        if(inp != 'quit'):
+            client.send('Received: ' + inp)
 
     print('User quit.')
     client.send('You will now disconnect.\nThank you for driving me!')

@@ -38,7 +38,9 @@ namespace RobotPiUI
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            textBlock.Text = client.Send(textBox.Text);
+            string recieved = client.Send(textBox.Text);
+
+            textBlock.Text = recieved;
         }
     }
 }
