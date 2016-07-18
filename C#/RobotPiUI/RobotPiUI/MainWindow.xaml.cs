@@ -26,7 +26,7 @@ namespace RobotPiUI
         {
             InitializeComponent();
             client = new Client();
-            client.Connect("localhost", 5202);
+            textBlock.Text = client.Connect("81.170.164.163", 50005);
 
             System.Diagnostics.Trace.WriteLine("Test");
         }
@@ -38,12 +38,7 @@ namespace RobotPiUI
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            textBox1.Text = client.Send(textBox.Text);
-        }
-
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            textBlock.Text = client.Send(textBox.Text);
         }
     }
 }

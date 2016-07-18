@@ -28,5 +28,5 @@ while inp != 'shutdown\r\n':
 
     print('User quit.')
     client.send('Quiting. Thank you for driving me!')
-client.close()
+    client.close()
     

@@ -10,20 +10,29 @@ namespace RobotPiUI
         Socket s;
         byte[] bytes;
 
-        public bool Connect(String ip, int port){
+        public string Connect(String ip, int port){
             bytes = new byte[1024];
-            IPAddress address = new IPAddress(Encoding.ASCII.GetBytes(ip));
-            IPEndPoint endPoint = new IPEndPoint(address, port);
 
             try {
+                IPAddress address = IPAddress.Parse(ip);
+                IPEndPoint endPoint = new IPEndPoint(address, port);
                 s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 s.Connect(endPoint);
-                //Send "connected"
-                return true;
+                Send("User connected.");
+                return "Connected.";
+
+            }catch(ArgumentException ae)
+            {
+                return "Oops! Invalid IP.";
             }
-            catch (Exception e){
-                return false;
+            catch(SocketException se)
+            {
+                return "Could not create socket.";
+            }
+            catch(Exception e)
+            {
+                return "Oops! Could not connect for some weird reason.";
             }
         }
 
