@@ -2,13 +2,13 @@ C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\Robot
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.exe
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.pdb
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.csprojResolveAssemblyReference.cache
-C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.g.cs
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\App.g.cs
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI_MarkupCompile.cache
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI_MarkupCompile.lref
-C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.baml
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.g.resources
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.Properties.Resources.resources
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.csproj.GenerateResource.Cache
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.exe
 C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.pdb
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.g.cs
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.baml
