@@ -60,9 +60,19 @@ namespace RobotPiUI
             }
         }
 
+        public bool IsConnected()
+        {
+            bool part1 = s.Poll(1000, SelectMode.SelectRead);
+            bool part2 = (s.Available == 0);
+            if (part1 && part2)
+                return false;
+            else
+                return true;
+        }
+
         public void Close()
         {
-            s.Shutdown(SocketShutdown.Both);
+            //s.Shutdown(SocketShutdown.Both);
             s.Close();
         }
 

@@ -5,10 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RobotPiUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="201,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="251,206,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="201,91,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="125"/>
+        Title="RobotPi Interface" Height="350" Width="525"
+        Closing="Window_Closing">
+    <Grid RenderTransformOrigin="0.584,0.485">
+        <Label x:Name="MainLabel" Content="RobotPi Interface" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontWeight="Bold" FontSize="20" FontFamily="Lucida Console" Foreground="LightBlue"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="IP address:" Margin="20,100,0,0"/>
+        <TextBox x:Name="IpAddress" Text="81.170.164.163" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,120,0,0" Width="100" TextWrapping="Wrap"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Port:" Margin="20,140,0,0"/>
+        <TextBox x:Name="Port" Text="50005" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,160,0,0" Width="70" TextWrapping="Wrap"/>
+        <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="60" Margin="0,0,125,91" Click="Connect_Click"/>
+        <Button x:Name="DisconnectButton" Content="Disconnect" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="70" Margin="0,0,45,91" Click="Disconnect_Click"/>
+        <TextBlock Text="Status:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="60" Margin="0,0,125,71"/>
+        <Rectangle x:Name="RedLed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="10" Height="10" Margin="0,0,130,73.5" Fill="Red"/>
+        <Rectangle x:Name="GreenLed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="10" Height="10" Margin="0,0,115,73.5" Fill="DarkGreen"/>
+        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="Custom Commands" Margin="0,0,81,35" />
+        <TextBox x:Name="textBox" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="20" Margin="0,0,85,10" TextWrapping="Wrap"/>
+        <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="60" Margin="0,0,20,10" Click="button_Click"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="RobotPi console" Margin="20,0,0,115" />
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="200" Height="100" VerticalAlignment="Bottom" Margin="20,0,0,10">
+            <TextBlock x:Name="console" TextWrapping="Wrap"/>
+        </Border>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ using System.Windows.Shapes;
 namespace RobotPiUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CustomCommands.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -25,22 +26,54 @@ namespace RobotPiUI
         public MainWindow()
         {
             InitializeComponent();
-            client = new Client();
-            textBlock.Text = client.Connect("81.170.164.163", 50005);
 
-            System.Diagnostics.Trace.WriteLine("Test");
-        }
-
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+           // System.Diagnostics.Trace.WriteLine("Test");
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             string recieved = client.Send(textBox.Text);
 
-            textBlock.Text = recieved;
+            console.Text = recieved;
+
+            CheckLeds();
+        }
+
+        private void Connect_Click(object sender, RoutedEventArgs e)
+        {
+            client = new Client();
+            console.Text = client.Connect(IpAddress.Text, int.Parse(Port.Text));
+            CheckLeds();
+        }
+
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            console.Text = client.Send("quit");
+            CheckLeds();
+            client.Close();
+        }
+
+        private void CheckLeds()
+        {
+            //Is connected
+            if (client != null && client.IsConnected())
+            {
+                RedLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.DarkRed);
+                GreenLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.LightGreen);
+            }else
+            {
+                RedLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.Red);
+                GreenLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.DarkGreen);
+            }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if(client != null)
+            {
+                client.Send("quit");
+                client.Close();
+            }
         }
     }
 }
