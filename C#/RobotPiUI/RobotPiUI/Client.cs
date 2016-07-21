@@ -62,18 +62,33 @@ namespace RobotPiUI
 
         public bool IsConnected()
         {
-            bool part1 = s.Poll(1000, SelectMode.SelectRead);
-            bool part2 = (s.Available == 0);
-            if (part1 && part2)
+            if(s == null)
+            {
                 return false;
-            else
-                return true;
+            }
+            try
+            {
+                bool part1 = s.Poll(1000, SelectMode.SelectRead);
+                bool part2 = (s.Available == 0);
+                if (part1 && part2)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         public void Close()
         {
             //s.Shutdown(SocketShutdown.Both);
-            s.Close();
+            if(s != null)
+            {
+                s.Close();
+            }
         }
 
         private string Recieve()
