@@ -34,7 +34,7 @@ while inp != 'shutdown':
         #Try to run the input as python code
         try:
             eval(inp)
-        except SyntaxError:
+        except Exception:
             pass
         if(inp != 'quit'):
             client.send('Received: ' + inp)
