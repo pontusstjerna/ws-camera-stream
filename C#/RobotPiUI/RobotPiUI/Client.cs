@@ -27,7 +27,8 @@ namespace RobotPiUI
             }
             catch(SocketException se)
             {
-                return "Could not create socket.";
+                s = null;
+                return "Could not connect. (Unable to create socket)";
             }
             catch(Exception e)
             {

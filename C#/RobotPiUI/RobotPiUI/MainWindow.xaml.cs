@@ -35,32 +35,41 @@ namespace RobotPiUI
             string recieved = client.Send(textBox.Text);
 
             console.Text = recieved;
-
-            CheckLeds();
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             client = new Client();
             console.Text = client.Connect(IpAddress.Text, int.Parse(Port.Text));
-            CheckLeds();
+            if (client.IsConnected())
+            {
+                SetLed(true);
+            }
+            else
+            {
+                SetLed(false);
+            }
         }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
-            console.Text = client.Send("quit");
-            CheckLeds();
-            client.Close();
+            if(client != null)
+            {
+                console.Text = client.Send("quit");
+                client.Close();
+            }
+
+            SetLed(false);
         }
 
-        private void CheckLeds()
+        private void SetLed(bool green)
         {
-            //Is connected
-            if (client != null && client.IsConnected())
+            if (green)
             {
                 RedLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.DarkRed);
                 GreenLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.LightGreen);
-            }else
+            }
+            else
             {
                 RedLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.Red);
                 GreenLed.Fill = new SolidColorBrush(System.Windows.Media.Colors.DarkGreen);

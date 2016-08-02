@@ -2,12 +2,13 @@
 
 import socket
 import L298NHBridge as HBridge
+import sys
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 host = '192.168.25.115'
 port = 50005
-s.bind((host, port))
+s.bind((sys.argv[0], sys.argv[1]))
 
 print('Starting RobotPI server.\nWaiting for clients...')
 
