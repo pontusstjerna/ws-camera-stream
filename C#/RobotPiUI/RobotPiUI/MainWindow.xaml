@@ -23,7 +23,9 @@
         <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="60" Margin="0,0,20,10" Click="button_Click"/>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="RobotPi console" Margin="20,0,0,115" />
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="200" Height="100" VerticalAlignment="Bottom" Margin="20,0,0,10">
-            <TextBlock x:Name="console" TextWrapping="Wrap"/>
+            <ScrollViewer x:Name="ConsoleScroll">
+                <TextBlock x:Name="console" TextWrapping="Wrap"/>
+            </ScrollViewer>
         </Border>
     </Grid>
 </Window>

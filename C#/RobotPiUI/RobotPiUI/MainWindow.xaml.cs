@@ -34,13 +34,17 @@ namespace RobotPiUI
         {
             string recieved = client.Send(textBox.Text);
 
-            console.Text = recieved;
+            console.Text += recieved + '\n';
+
+            textBox.Text = "";
+
+            ConsoleScroll.ScrollToBottom();
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             client = new Client();
-            console.Text = client.Connect(IpAddress.Text, int.Parse(Port.Text));
+            console.Text = client.Connect(IpAddress.Text, int.Parse(Port.Text)) + '\n';
             if (client.IsConnected())
             {
                 SetLed(true);
