@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:RobotPiUI"
         mc:Ignorable="d"
         Title="RobotPi Interface" Height="600" Width="800"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        KeyDown="OnKeyDown"
+        KeyUp="OnKeyUp">
     <Grid RenderTransformOrigin="0.584,0.485">
         <Label x:Name="MainLabel" Content="RobotPi Interface" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontWeight="Bold" FontSize="20" FontFamily="Lucida Console" Foreground="LightBlue"/>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="IP address:" Margin="20,100,0,0"/>

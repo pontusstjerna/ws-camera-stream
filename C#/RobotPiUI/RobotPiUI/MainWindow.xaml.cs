@@ -22,12 +22,28 @@ namespace RobotPiUI
     public partial class MainWindow : Window
     {
         Client client;
+        RobotController rController;
 
         public MainWindow()
         {
             InitializeComponent();
-
            // System.Diagnostics.Trace.WriteLine("Test");
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if(rController != null)
+            {
+                rController.AddKeyDown(e.Key);
+            }
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (rController != null)
+            {
+                rController.AddKeyUp(e.Key);
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -48,6 +64,7 @@ namespace RobotPiUI
             if (client.IsConnected())
             {
                 SetLed(true);
+                rController = new RobotController(client);
             }
             else
             {
