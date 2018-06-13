@@ -1,0 +1,28 @@
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.exe.config
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.exe
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.pdb
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.csprojResolveAssemblyReference.cache
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\App.g.cs
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI_MarkupCompile.cache
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI_MarkupCompile.lref
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.g.resources
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.Properties.Resources.resources
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.csproj.GenerateResource.Cache
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.exe
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.pdb
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.g.cs
+C:\Users\pontu\Documents\Programmering\Other projects\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.baml
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.exe.config
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.exe
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.pdb
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.exe
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\bin\Debug\RobotPiUI.pdb
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.csprojResolveAssemblyReference.cache
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.g.cs
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\App.g.cs
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI_MarkupCompile.cache
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI_MarkupCompile.lref
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\MainWindow.baml
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.g.resources
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.Properties.Resources.resources
+F:\Projekt\Programmering\RobotPi\C#\RobotPiUI\RobotPiUI\obj\Debug\RobotPiUI.csproj.GenerateResource.Cache
