@@ -10,9 +10,11 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
+const started = new Date().toString();
+
 app.use(express.static('public'));
 
-server.listen(PORT, () => console.log('Server successfully started on port ' + PORT));
+server.listen(PORT, () => console.log(started + ': Server successfully started on port ' + PORT));
 
 io.on('connection', socket => {
     console.log('User connected.');
@@ -32,6 +34,10 @@ io.on('connection', socket => {
     socket.on('right', () => {
         console.log('Right registered.');
     });
+
+    socket.on('started', () => {
+        socket.emit('started', started);
+    })
 });
 
 io.on('disconnect', () => {

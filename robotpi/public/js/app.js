@@ -1,5 +1,9 @@
 var socket = io();
 
+socket.emit('started', started => {
+    
+})
+
 $('#btnForward').click(function() {
     forward();
 });
