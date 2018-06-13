@@ -16,6 +16,22 @@ server.listen(PORT, () => console.log('Server successfully started on port ' + P
 
 io.on('connection', socket => {
     console.log('User connected.');
+
+    socket.on('forward', () => {
+        console.log('Forward registered.');
+    });
+
+    socket.on('backward', () => {
+        console.log('Backward registered.');
+    });
+
+    socket.on('left', () => {
+        console.log('Left registered.');
+    });
+
+    socket.on('right', () => {
+        console.log('Right registered.');
+    });
 });
 
 io.on('disconnect', () => {
