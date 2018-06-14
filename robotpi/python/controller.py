@@ -7,18 +7,17 @@ print('Python controller ready.')
 inp = ""
 
 while inp != 'quit':
-    for line in sys.stdin:
-        inp = line
+    inp = sys.stdin.readline().split('\n')[0]
+    if (inp != 'quit'):
+        print ('py: ' + inp)
+        sys.stdout.flush()
+
         try:
             eval(inp)
         except Exception, err:
             print('Unable to execute')
             print Exception, err
             pass
-        if(inp != 'quit'):
-            print('Received: ' + inp)
-            sys.stdout.flush()
-        time.sleep(1)
 
 print('User quit')
 HBridge.exit()

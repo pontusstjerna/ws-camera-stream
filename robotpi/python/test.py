@@ -6,10 +6,10 @@ print('I really like juice');
 inp = ''
 
 while inp != 'quit':
-    for line in sys.stdin:
-        print(line)
-        sys.stdout.flush()
-        inp = line
-        time.sleep(1)
+    inp = sys.stdin.readline()
+    inp = inp.split('\n')[0]
+    print(inp)
+    sys.stdout.flush()
+    time.sleep(1)
 
 

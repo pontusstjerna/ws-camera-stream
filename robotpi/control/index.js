@@ -2,12 +2,14 @@ import PythonShell from 'python-shell';
 
 const shell = new PythonShell('python/controller.py');
 
-shell.on('message', message => console.log('From Python: ' + message));
-
-shell.end((err, code, signal) => {
-    if (err) throw err;
-    console.log('Python exited with code ' + code);
+shell.on('message', message => {
+    console.log('From Python: ' + message);
 });
+
+//shell.end((err, code, signal) => {
+//    if (err) throw err;
+//    console.log('Python exited with code ' + code);
+//});
 
 
 
@@ -36,6 +38,10 @@ export const backward = () => {
 export const stop = () => {
     setMotorLeft(0);
     setMotorRight(0);
+}
+
+export const exit = () => {
+    shell.send('quit');
 }
 
 const setMotorRight = pwr => {
