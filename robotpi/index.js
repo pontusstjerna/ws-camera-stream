@@ -22,24 +22,28 @@ io.on('connection', socket => {
     console.log('User connected.');
 
     socket.on('forward', () => {
-        console.log('Forward registered.');
+        controller.forward();
     });
 
     socket.on('backward', () => {
-        console.log('Backward registered.');
+        controller.backward();
     });
 
     socket.on('left', () => {
-        console.log('Left registered.');
+        controller.left();
     });
 
     socket.on('right', () => {
-        console.log('Right registered.');
+        controller.right();
+    });
+
+    socket.on('stop', () => {
+        controller.stop();
     });
 
     socket.on('started', () => {
         socket.emit('started', started);
-    })
+    });
 });
 
 io.on('disconnect', () => {
