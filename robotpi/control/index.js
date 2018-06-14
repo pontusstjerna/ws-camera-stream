@@ -1,17 +1,6 @@
 import PythonShell from 'python-shell';
 
-const shell = new PythonShell('python/controller.py');
-
-shell.on('message', message => {
-    console.log('From Python: ' + message);
-});
-
-//shell.end((err, code, signal) => {
-//    if (err) throw err;
-//    console.log('Python exited with code ' + code);
-//});
-
-
+let shell;
 
 export let power = 1;
 
@@ -40,8 +29,19 @@ export const stop = () => {
     setMotorRight(0);
 }
 
+export const start = () => {
+    shell = new PythonShell('python/controller.py');
+    shell.on('message', message => {
+        console.log('From Python: ' + message);
+    });
+}
+
 export const exit = () => {
     shell.send('quit');
+    shell.end((err, code, signal) => {
+        if (err) throw err;
+        console.log('Python exited with code ' + code);
+    });
 }
 
 const setMotorRight = pwr => {

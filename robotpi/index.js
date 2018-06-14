@@ -13,6 +13,7 @@ const server = http.Server(app);
 const io = socketIO(server);
 
 const started = new Date().toString();
+let users = 0;
 
 app.use(express.static('public'));
 
@@ -20,6 +21,12 @@ server.listen(PORT, () => console.log(started + ': Server successfully started o
 
 io.on('connection', socket => {
     console.log('User connected.');
+
+    // TODO: Not thread safe
+    users++;
+    if (users == 1) {
+        controller.start();
+    }
 
     socket.on('forward', () => {
         controller.forward();
@@ -44,8 +51,12 @@ io.on('connection', socket => {
     socket.on('started', () => {
         socket.emit('started', started);
     });
-});
 
-io.on('disconnect', () => {
-    console.log('User disconnected.');
-})
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+        users--;
+        if (users == 0) {
+            controller.exit();
+        }
+    });
+});
