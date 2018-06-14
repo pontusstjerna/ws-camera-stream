@@ -4,6 +4,10 @@ socket.emit('started');
 
 socket.on('started', started => $('#txtStarted').text('The server was last started ' + started));
 
+var url = 'ws://' + document.location.hostname + ':8082/';
+var canvas = document.getElementById('videoCanvas');
+var player = new JSMpeg.Player(url, {canvas: canvas});
+
 const input = {
     'up': false,
     'down': false,

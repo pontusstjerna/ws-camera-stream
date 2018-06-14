@@ -3,9 +3,9 @@ import http from 'http';
 import socketIO from 'socket.io';
 
 import * as controller from './control';
+import startVideoServer from './video';
 
-const PORT = 80;
-
+const PORT = 8080;
 
 console.log('Starting server...');
 const app = express();
@@ -17,7 +17,10 @@ let users = 0;
 
 app.use(express.static('public'));
 
-server.listen(PORT, () => console.log(started + ': Server successfully started on port ' + PORT));
+server.listen(PORT, () => {
+    startVideoServer(app, PORT);
+    console.log(started + ': Base server successfully started on port ' + PORT);
+});
 
 io.on('connection', socket => {
     console.log('User connected.');
