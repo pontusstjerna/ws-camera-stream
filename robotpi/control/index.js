@@ -32,7 +32,7 @@ export const stop = () => {
 export const start = () => {
     shell = new PythonShell('python/controller.py');
     shell.on('message', message => {
-        console.log('From Python: ' + message);
+        console.log('py: ' + message);
     });
 }
 
@@ -45,9 +45,9 @@ export const exit = () => {
 }
 
 const setMotorRight = pwr => {
-    shell.send('setMotorRight(' + pwr + ')');
+    shell.send('HBridge.setMotorRight(' + pwr + ')');
 }
 
 const setMotorLeft = pwr => {
-    shell.send('setMotorLeft(' + pwr + ')');
+    shell.send('HBridge.setMotorLeft(' + pwr + ')');
 }
