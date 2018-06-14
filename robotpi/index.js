@@ -4,7 +4,7 @@ import socketIO from 'socket.io';
 
 import * as controller from './control';
 
-const PORT = 5005;
+const PORT = 80;
 
 
 console.log('Starting server...');

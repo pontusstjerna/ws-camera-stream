@@ -11,23 +11,37 @@ const input = {
     'right': false
 };
 
-$('#btnForward').click(function() {
+$('#btnForward').bind('touchstart mousedown', function() {
     forward();
 });
 
-$('#btnBackward').click(function() {
-    backward();
+$('#btnBackward').bind('touchstart mousedown', function() {
+    reverse();
+    forward();
 });
 
-$('#btnLeft').click(function() {
+$('#btnLeft').bind('touchstart mousedown', function() {
     left();
 });
 
-$('#btnRight').click(function() {
+$('#btnRight').bind('touchstart mousedown', function() {
     right();
 });
 
-$('#btnStop').click(function() {
+$('#btnRotLeft').bind('touchstart mousedown', function() {
+    rotLeft();
+});
+
+$('#btnRotRight').bind('touchstart mousedown', function() {
+    rotRight();
+});
+
+$('#btnBackward').bind('touchend mouseup', function() {
+    stop();
+    reverse();
+});
+
+$('#btnForward, #btnLeft, #btnRight, #btnRotLeft, #btnRotRight').bind('touchend mouseup', function() {
     stop();
 });
 

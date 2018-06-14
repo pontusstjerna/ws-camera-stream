@@ -20,13 +20,13 @@ export const right = () => {
 }
 
 export const rotLeft = () => {
-    setMotorLeft(power);
-    setMotorRight(-power);
+    setMotorLeft(power * 0.8);
+    setMotorRight(-power * 0.8);
 }
 
 export const rotRight = () => {
-    setMotorLeft(-power);
-    setMotorRight(power);
+    setMotorLeft(-power * 0.8);
+    setMotorRight(power * 0.8);
 }
 
 export const reverse = () => {
@@ -39,8 +39,8 @@ export const stop = () => {
 }
 
 export const start = () => {
-    //shell = new PythonShell('python/controller.py');
-    shell = new PythonShell('python/test.py');
+    shell = new PythonShell('python/controller.py');
+    //shell = new PythonShell('python/test.py');
     shell.on('message', message => {
         console.log('py: ' + message);
     });
