@@ -20,6 +20,10 @@ $('#btnRight').click(function() {
     right();
 });
 
+$('#btnStop').click(function() {
+    stop();
+});
+
 $(document).keydown(function(e) {
     switch(e.which) {
         case 37: // left
@@ -36,6 +40,9 @@ $(document).keydown(function(e) {
 
         case 40: // down
             backward();
+
+        case 32: // space
+            stop();
         break;
 
         default: return; // exit this handler for other keys
@@ -57,4 +64,8 @@ function left() {
 
 function right() {
     socket.emit('right');
+}
+
+function stop() {
+    socket.emit('stop');
 }
