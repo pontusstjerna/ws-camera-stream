@@ -32,8 +32,8 @@ io.on('connection', socket => {
         controller.forward();
     });
 
-    socket.on('backward', () => {
-        controller.backward();
+    socket.on('reverse', () => {
+        controller.reverse();
     });
 
     socket.on('left', () => {
@@ -42,6 +42,14 @@ io.on('connection', socket => {
 
     socket.on('right', () => {
         controller.right();
+    });
+
+    socket.on('rotLeft', () => {
+        controller.rotLeft();
+    });
+
+    socket.on('rotRight', () => {
+        controller.rotRight();
     });
 
     socket.on('stop', () => {

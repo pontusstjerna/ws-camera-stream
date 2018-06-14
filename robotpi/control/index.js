@@ -19,9 +19,18 @@ export const right = () => {
     setMotorRight(power);
 }
 
-export const backward = () => {
-    setMotorLeft(-power);
+export const rotLeft = () => {
+    setMotorLeft(power);
     setMotorRight(-power);
+}
+
+export const rotRight = () => {
+    setMotorLeft(-power);
+    setMotorRight(power);
+}
+
+export const reverse = () => {
+    power = -power;
 }
 
 export const stop = () => {
@@ -30,7 +39,8 @@ export const stop = () => {
 }
 
 export const start = () => {
-    shell = new PythonShell('python/controller.py');
+    //shell = new PythonShell('python/controller.py');
+    shell = new PythonShell('python/test.py');
     shell.on('message', message => {
         console.log('py: ' + message);
     });
@@ -46,8 +56,10 @@ export const exit = () => {
 
 const setMotorRight = pwr => {
     shell.send('HBridge.setMotorRight(' + pwr + ')');
+    console.log('');
 }
 
 const setMotorLeft = pwr => {
     shell.send('HBridge.setMotorLeft(' + pwr + ')');
+    console.log('');
 }

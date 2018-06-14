@@ -1,7 +1,8 @@
 import sys
 import time
 
-print('I really like juice');
+print('Python started (TEST VERSION)');
+sys.stdout.flush()
 
 inp = ''
 
@@ -10,6 +11,3 @@ while inp != 'quit':
     inp = inp.split('\n')[0]
     print(inp)
     sys.stdout.flush()
-    time.sleep(1)
-
-
