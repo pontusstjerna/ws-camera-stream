@@ -39,8 +39,8 @@ export const stop = () => {
 }
 
 export const start = () => {
-    //shell = new PythonShell('python/controller.py');
-    shell = new PythonShell('python/test.py');
+    shell = new PythonShell('python/controller.py');
+    //shell = new PythonShell('python/test.py');
     shell.on('message', message => {
         console.log('py: ' + message);
     });
