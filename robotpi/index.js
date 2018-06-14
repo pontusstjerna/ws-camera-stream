@@ -2,6 +2,8 @@ import express from 'express';
 import http from 'http';
 import socketIO from 'socket.io';
 
+import * as controller from './control';
+
 const PORT = 5005;
 
 
