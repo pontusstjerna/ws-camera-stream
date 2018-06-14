@@ -122,7 +122,13 @@ $(document).keyup(function(e) {
         break;
 
         case 39: // right
-            right();
+            input['right'] = false;
+            
+            if (input['up'] || input['down']) {
+                forward();
+            } else {
+                stop();
+            }
         break;
 
         case 40: // down
