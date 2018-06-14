@@ -1,8 +1,8 @@
 var socket = io();
 
-socket.emit('started', started => {
-    
-})
+socket.emit('started');
+
+socket.on('started', started => $('#txtStarted').text('The server was last started ' + started));
 
 $('#btnForward').click(function() {
     forward();
