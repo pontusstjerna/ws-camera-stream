@@ -38,9 +38,14 @@ export const stop = () => {
     setMotorRight(0);
 }
 
-export const start = () => {
-    shell = new PythonShell('python/controller.py');
-    //shell = new PythonShell('python/test.py');
+export const start = (debug) => {
+    
+    if(!debug) {
+        shell = new PythonShell('python/controller.py');
+    } else {
+        shell = new PythonShell('python/test.py');
+    }
+
     shell.on('message', message => {
         console.log('py: ' + message);
     });

@@ -5,7 +5,7 @@ socket.emit('started');
 socket.on('started', started => $('#txtStarted').text('The server was last started ' + started));
 
 var url = 'ws://' + document.location.hostname + ':8082/';
-var canvas = document.getElementById('videoCanvas');
+var canvas = $('#video-canvas')[0];
 var player = new JSMpeg.Player(url, {canvas: canvas});
 
 const input = {
@@ -16,37 +16,45 @@ const input = {
 };
 
 $('#btnForward').bind('touchstart mousedown', function() {
+    $('#btnForward').addClass('active');
     forward();
 });
 
 $('#btnBackward').bind('touchstart mousedown', function() {
+    $('#btnBackward').addClass('active');
     reverse();
     forward();
 });
 
 $('#btnLeft').bind('touchstart mousedown', function() {
+    $('#btnLeft').addClass('active');
     left();
 });
 
 $('#btnRight').bind('touchstart mousedown', function() {
+    $('#btnRight').addClass('active');
     right();
 });
 
 $('#btnRotLeft').bind('touchstart mousedown', function() {
+    $('#btnRotLeft').addClass('active');
     rotLeft();
 });
 
 $('#btnRotRight').bind('touchstart mousedown', function() {
+    $('#btnRotRight').addClass('active');
     rotRight();
 });
 
 $('#btnBackward').bind('touchend mouseup', function() {
+    $('#btnBackward').removeClass('active');
     stop();
     reverse();
 });
 
 $('#btnForward, #btnLeft, #btnRight, #btnRotLeft, #btnRotRight').bind('touchend mouseup', function() {
     stop();
+    $('#btnForward, #btnLeft, #btnRight, #btnRotLeft, #btnRotRight').removeClass('active');
 });
 
 $(document).keydown(function(e) {

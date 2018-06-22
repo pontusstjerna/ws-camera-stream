@@ -1,12 +1,26 @@
 body {
     align-content: center;
     text-align: center;
+    color: #d5d5d5;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #101010;
 }
 
-.buttons button {
+.buttons button, img {
     font-size: 3em;
     margin: 0.1em;
     width: 2em;
     height: 2em;
+    background-color: #303030;
+    transition-duration: 100ms;
+}
+
+.buttons .active {
+    background-color: #a0a0a0;
+    transition-duration: 100ms;
+}
+
+#video-canvas {
+    border: 2px solid #303030;
+    border-radius: 5px;
 }
