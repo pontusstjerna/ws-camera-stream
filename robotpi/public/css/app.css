@@ -32,7 +32,7 @@ body {
 }
 
 .buttons #btnLeft {
-    background-image: url(../assets/baseline-arrow_upleft-24px\ copy.svg);
+    background-image: url(../assets/baseline-arrow_upleft-24px.svg);
 }
 
 .buttons #btnForward {
@@ -60,4 +60,13 @@ body {
     border-radius: 5px;
     width: 320px;
     height: 240px;
+}
+
+#content-main {
+    transition: 400ms;
+    display: none;
+}
+
+#content-auth {
+    transition: 400ms;
 }
