@@ -6,7 +6,7 @@ function getAuthorizationHeader() {
 }
 
 function connectIO() {
-    var socket = io('http://localhost:8080', {
+    var socket = io('http://' + window.location.hostname + ':8080', {
         transportOptions: {
             polling: {
               extraHeaders: {
@@ -33,7 +33,7 @@ function connectWS() {
     var user = $('#txtUsername').val();
     var password = $('#txtPassword').val();
 
-    var url = 'ws://localhost:8082/?authorization=' + getAuthorizationHeader();
+    var url = 'ws://' + window.location.hostname + ':8082/?authorization=' + getAuthorizationHeader();
     var canvas = $('#video-canvas')[0];
     var player = new JSMpeg.Player(url, {canvas: canvas});
 }
