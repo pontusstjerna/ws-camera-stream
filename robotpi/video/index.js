@@ -2,7 +2,7 @@ import WebSocket from 'ws';
 
 export default (app, basePort) => {
 
-    const WEBSOCKET_PORT = basePort + 2;
+    const WEBSOCKET_PORT = parseInt(basePort) + 2;
 
     const streamingSocketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false});
     streamingSocketServer.connectionCount = 0;

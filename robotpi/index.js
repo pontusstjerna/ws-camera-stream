@@ -12,6 +12,6 @@ const server = http.Server(app);
 const started = socket(server);
 
 server.listen(4000, () => {
-    //startVideoServer(app, PORT);
+    startVideoServer(app, PORT);
     console.log(started + ': Base server successfully started on port ' + PORT);
 });
