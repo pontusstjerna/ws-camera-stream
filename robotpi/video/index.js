@@ -1,5 +1,4 @@
 import WebSocket from 'ws';
-import { authorize } from '../util/auth.js';
 
 export default (app, basePort) => {
 
@@ -8,11 +7,6 @@ export default (app, basePort) => {
     const socketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false});
     socketServer.connectionCount = 0;
     socketServer.on('connection', (socket, upgradeReq) => {
-
-        if (!authorize(upgradeReq.url.split('authorization=')[1])) {
-            console.log('Video unauthorized');
-            return;
-        }
 
         socketServer.connectionCount++;
         console.log(

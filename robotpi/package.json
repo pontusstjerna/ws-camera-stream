@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js username password --exec babel-node --presets es2015,stage-2",
-    "nopi": "nodemon index.js username password nopi --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon index.js pi 4000 --exec babel-node --presets es2015,stage-2",
+    "nopi": "nodemon index.js nopi 4000 --exec babel-node --presets es2015,stage-2"
   },
   "repository": {
     "type": "git",

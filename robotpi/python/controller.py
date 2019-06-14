@@ -15,9 +15,9 @@ while inp != 'quit':
 
         try:
             eval(inp)
-        except Exception, err:
+        except Exception as err:
             print('Unable to execute')
-            print Exception, err
+            print (err)
             pass
 
 print('User quit')
