@@ -4,54 +4,62 @@ export default (app, basePort) => {
 
     const WEBSOCKET_PORT = basePort + 2;
 
-    const socketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false});
-    socketServer.connectionCount = 0;
-    socketServer.on('connection', (socket, upgradeReq) => {
+    const streamingSocketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false});
+    streamingSocketServer.connectionCount = 0;
+    streamingSocketServer.on('connection', (socket, upgradeReq) => {
 
-        socketServer.connectionCount++;
+        streamingSocketServer.connectionCount++;
         console.log(
-            'New WebSocket Connection: ', 
+            'Video listener connected: ',
             (upgradeReq || socket.upgradeReq).socket.remoteAddress,
             (upgradeReq || socket.upgradeReq).headers['user-agent'],
-            '('+socketServer.connectionCount+' total)'
+            '(' + streamingSocketServer.connectionCount + ' total)'
         );
-        socket.on('close', function(code, message){
-            socketServer.connectionCount--;
-            console.log(
-                'Disconnected WebSocket (' + socketServer.connectionCount+  ' total)'
-            );
+
+        socket.on('close', () => {
+            streamingSocketServer.connectionCount--;
+            console.log('Video listener disconnected (' + streamingSocketServer.connectionCount +  ' total)');
         });
     });
 
-    socketServer.broadcast = function(data) {
-        socketServer.clients.forEach(function each(client) {
+    // Broadcast video stream
+    streamingSocketServer.broadcast = function(data) {
+        streamingSocketServer.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(data);
             }
         });
     };
 
+    // Receive local video stream
     app.use('/stream', (request, response) => {
         response.connection.setTimeout(0);
         console.log(
-            'Stream Connected: ' + 
+            'Local stream connected: ' +
             request.socket.remoteAddress + ':' +
             request.socket.remotePort
         );
-        request.on('data', function(data){
-            socketServer.broadcast(data);
+
+        // Local stream of data is received, broadcast to all listeners
+        request.on('data', data => {
+
+            streamingSocketServer.broadcast(data);
+
+            // Don't know that this does
             if (request.socket.recording) {
                 request.socket.recording.write(data);
             }
         });
-        request.on('end',function(){
-            console.log('close');
+
+        request.on('end',() => {
+            console.log('Local video stream closed');
+
             if (request.socket.recording) {
                 request.socket.recording.close();
             }
         });
     });
 
-    console.log('Listening for incomming MPEG-TS Stream on http://127.0.0.1:' + basePort + '/stream');
-    console.log('Awaiting WebSocket connections on ws://127.0.0.1:' + WEBSOCKET_PORT);
+    console.log('Listening for incoming MPEG-TS stream through websocket on localhost:' + basePort + '/stream');
+    console.log('Awaiting video listeners on websocket connections on ws://localhost:' + WEBSOCKET_PORT);
 }
