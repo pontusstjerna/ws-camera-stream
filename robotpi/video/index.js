@@ -13,23 +13,19 @@ export default (app, basePort) => {
     streamingSocketServer.on('connection', (socket, upgradeReq) => {
 
         if (process.argv[2] !== 'nopi' && childProcess === null) {
-            childProcess = startVideoStreamProcess();
+            childProcess = startVideoStreamProcess(basePort);
             console.log('First video socket, starting video stream.');
         }
 
         streamingSocketServer.connectionCount++;
-        console.log(
-            'Video listener connected: ',
-            (upgradeReq || socket.upgradeReq).socket.remoteAddress,
-            (upgradeReq || socket.upgradeReq).headers['user-agent'],
-            '(' + streamingSocketServer.connectionCount + ' total)'
-        );
+        console.log('Video listener connected. ' + streamingSocketServer.connectionCount + ' sockets connected.');
 
         socket.on('close', () => {
             streamingSocketServer.connectionCount--;
 
             console.log('Video listener disconnected (' + streamingSocketServer.connectionCount +  ' total)');
             if (streamingSocketServer.connectionCount === 0 && childProcess !== null) {
+		console.log('Last video socket disconnected; killing video stream.');
                 childProcess.kill();
                 childProcess = null;
             }
@@ -49,9 +45,7 @@ export default (app, basePort) => {
     app.use('/stream', (request, response) => {
         response.connection.setTimeout(0);
         console.log(
-            'Local stream connected: ' +
-            request.socket.remoteAddress + ':' +
-            request.socket.remotePort
+            'Local video stream connected.'
         );
 
         // Local stream of data is received, broadcast to all listeners
@@ -82,8 +76,8 @@ const startVideoStreamProcess = port => {
     return exec(
         `avconv -s 320x240 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k -r 24 http://localhost:${port}/stream`,
         (error, stdout, stderr) => {
-            sys.print('stout: ' + stdout);
-            sys.print('stderr: ' + stderr);
+            //sys.print('stout: ' + stdout);
+            //sys.print('stderr: ' + stderr);
             if (error != null) {
                 console.log('Error with streaming: ' + error);
             }
