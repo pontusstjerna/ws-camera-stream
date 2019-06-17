@@ -1,4 +1,8 @@
 import WebSocket from 'ws';
+import sys from 'util';
+import { exec } from 'child_process';
+
+let childProcess = null;
 
 export default (app, basePort) => {
 
@@ -7,6 +11,11 @@ export default (app, basePort) => {
     const streamingSocketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false});
     streamingSocketServer.connectionCount = 0;
     streamingSocketServer.on('connection', (socket, upgradeReq) => {
+
+        if (process.argv[2] !== 'nopi' && childProcess === null) {
+            childProcess = startVideoStreamProcess();
+            console.log('First video socket, starting video stream.');
+        }
 
         streamingSocketServer.connectionCount++;
         console.log(
@@ -18,7 +27,12 @@ export default (app, basePort) => {
 
         socket.on('close', () => {
             streamingSocketServer.connectionCount--;
+
             console.log('Video listener disconnected (' + streamingSocketServer.connectionCount +  ' total)');
+            if (streamingSocketServer.connectionCount === 0 && childProcess !== null) {
+                childProcess.kill();
+                childProcess = null;
+            }
         });
     });
 
@@ -62,4 +76,17 @@ export default (app, basePort) => {
 
     console.log('Listening for incoming MPEG-TS stream through websocket on localhost:' + basePort + '/stream');
     console.log('Awaiting video listeners on websocket connections on ws://localhost:' + WEBSOCKET_PORT);
+}
+
+const startVideoStreamProcess = port => {
+    return exec(
+        `avconv -s 320x240 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k -r 24 http://localhost:${port}/stream`,
+        (error, stdout, stderr) => {
+            sys.print('stout: ' + stdout);
+            sys.print('stderr: ' + stderr);
+            if (error != null) {
+                console.log('Error with streaming: ' + error);
+            }
+        }
+    )
 }
