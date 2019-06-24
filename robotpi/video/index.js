@@ -1,5 +1,4 @@
 import WebSocket from 'ws';
-import sys from 'util';
 import { exec } from 'child_process';
 
 let childProcess = null;
