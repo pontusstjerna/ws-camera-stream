@@ -20,10 +20,9 @@ export default server => {
 
         socket.on('started', () => {
             console.log('Got started from client');
-            socket.emit('started', started);
+            socket.emit('started', JSON.stringify({started, lastConnected}));
         });
 
-        socket.on('lastConnected', () => socket.emit(lastConnected));
         socket.on('status', () => {
             exec('./get_status.sh', (err, stdout, stderr) => {
                 if (err) {
