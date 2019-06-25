@@ -21,10 +21,8 @@ const parseStatus = bufferedString => {
         return null;
     }
 
-    const throttledBitStatus = statusValues[0];
-
     return {
-        throttled: throttledBitStatus,
+        throttled: parseThrottledBitStatus(statusValues[0]),
         temp: statusValues[1],
         volts: {
             core: statusValues[2],
@@ -43,4 +41,43 @@ const parseStatusRow = row => {
         }
     }
     return null;
-}
+};
+
+const parseThrottledBitStatus = bitStatus => {
+    const bits = parseInt(bitStatus).toString(2);
+    let status = '';
+
+    if (bits[0] === '1') {
+        status += 'Under-voltage detected. ';
+    }
+
+    if (bits[1] === '1') {
+        status += 'Arm frequency capped. ';
+    }
+
+    if (bits[2] === '1') {
+        status += 'Currently throttled (slowed CPU). ';
+    }
+
+    if (bits[3] === '1') {
+        status += 'Soft temperature limit active. ';
+    }
+
+    if (bits[16] === '1') {
+        status += 'Under-voltage has occurred. ';
+    }
+
+    if (bits[17] === '1') {
+        status += 'Arm frequency capped has occurred. ';
+    }
+
+    if (bits[18] === '1') {
+        status += 'Throttling has occurred. ';
+    }
+
+    if (bits[19] === '1') {
+        status += 'Soft temperature limit has occurred.';
+    }
+
+    return status;
+};
