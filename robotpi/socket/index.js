@@ -1,5 +1,6 @@
 import socketIO from 'socket.io';
 import control, { start, exit } from './control.js';
+import status from './status';
 import { exec } from 'child_process';
 
 const started = new Date().toString();
@@ -23,27 +24,8 @@ export default server => {
             socket.emit('started', JSON.stringify({started, lastConnected}));
         });
 
-        socket.on('status', () => {
-            exec('./get_status.sh', (err, stdout, stderr) => {
-                if (err) {
-                    socket.emit('status', null);
-                    return;
-                }
-
-                console.log(stdout);
-            })
-
-            /*socket.emit(JSON.stringify({
-                throttled: null,
-                temp: null,
-                volts: {
-                    core: null,
-                    sdram_c: null,
-                    sdram_i: null,
-                    sdram_p: null
-                }
-            }));*/
-        });
+        // Handle system status updates
+        status(socket);
 
         // Setup controller parts
         control(socket);
