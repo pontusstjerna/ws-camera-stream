@@ -8,15 +8,17 @@ export default socket => {
                 return;
             }
 
-            socket.emit('status', parseStatus(stdout));
+            socket.emit('status', JSON.stringify(parseStatus(stdout)));
         })
     });
 }
 
 const parseStatus = bufferedString => {
-    const split = bufferedString.split('\n');
+
+    const split = bufferedString.split('\n').splice(0,6);
 
     const statusValues = split.map(row => parseStatusRow(row));
+    
     if (statusValues.length !== 6) {
         return null;
     }
