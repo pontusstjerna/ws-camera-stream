@@ -1,5 +1,6 @@
 import WebSocket from 'ws';
 import { exec } from 'child_process';
+import sys from 'util';
 
 let childProcess = null;
 
@@ -76,7 +77,10 @@ const startVideoStreamProcess = port => {
         `avconv -s 320x240 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k -r 24 http://localhost:${port}/stream`,
         (error, stdout, stderr) => {
             //sys.print('stout: ' + stdout);
-            //sys.print('stderr: ' + stderr);
+            //sys.print('stderr: ' + stder);
+            console.log(stdout);
+            console.log(stderr);
+
             if (error != null) {
                 console.log('Error with streaming: ' + error);
             }
