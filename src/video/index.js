@@ -74,7 +74,7 @@ export default (app, basePort) => {
 
 const startVideoStreamProcess = port => {
     return exec(
-        `avconv -s 320x240 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k -r 24 http://localhost:${port}/stream`,
+        `avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k http://localhost:${port}/stream`,
         (error, stdout, stderr) => {
             //sys.print('stout: ' + stdout);
             //sys.print('stderr: ' + stder);
