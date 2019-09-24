@@ -4,7 +4,7 @@ import http from 'http';
 import socket from './socket';
 import startVideoServer from './video';
 
-const PORT = process.argv[3] || 8080;
+const PORT = process.argv[3] || 4000;
 
 console.log('Starting server...');
 const app = express();
