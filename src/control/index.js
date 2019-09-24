@@ -41,9 +41,9 @@ export const stop = () => {
 export const start = (debug) => {
     
     if(!debug) {
-        shell = new PythonShell('../python/controller.py');
+        shell = new PythonShell('python/controller.py');
     } else {
-        shell = new PythonShell('../python/test.py');
+        shell = new PythonShell('python/test.py');
     }
 
     shell.on('message', message => {
