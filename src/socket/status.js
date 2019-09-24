@@ -5,6 +5,7 @@ export default socket => {
         exec('./get_status.sh', (err, stdout, stderr) => {
             if (err) {
                 socket.emit('status', null);
+		console.log(err);
                 return;
             }
 
