@@ -4,11 +4,11 @@ import sys from 'util';
 
 let childProcess = null;
 
+const videoStreamCmd = process.env.VIDEO_STREAM_COMMAND ||
+    `avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k http://localhost:4002/stream`;
+
 export default (app, basePort) => {
     const WEBSOCKET_PORT = parseInt(basePort) + 2;
-
-    const videoStreamCmd = process.env.VIDEO_STREAM_COMMAND ||
-        `avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k http://localhost:${WEBSOCKET_PORT}/stream`;
 
     const streamingSocketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false});
     streamingSocketServer.connectionCount = 0;
