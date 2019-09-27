@@ -1,17 +1,12 @@
 import express from 'express';
-import http from 'http';
+import { config } from 'dotenv';
+import start from './video';
 
-import socket from './socket';
-import startVideoServer from './video';
+config();
 
-const PORT = process.argv[3] || 4000;
+const PORT = process.env.PORT || 4000;
 
-console.log('Starting server...');
+console.log('Starting stream server...');
 const app = express();
-const server = http.Server(app);
-const started = socket(server);
 
-server.listen(4000, () => {
-    startVideoServer(app, PORT);
-    console.log(started + ': Base server successfully started on port ' + PORT);
-});
+start(app, PORT);
