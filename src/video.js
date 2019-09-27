@@ -15,7 +15,7 @@ export default (app, basePort) => {
     streamingSocketServer.on('connection', (socket, upgradeReq) => {
 
         if (process.argv[2] !== 'nopi' && childProcess === null) {
-            childProcess = startVideoStreamProcess(basePort);
+            childProcess = startVideoStreamProcess();
             console.log('First video socket, starting video stream.');
         }
 
@@ -74,7 +74,7 @@ export default (app, basePort) => {
     console.log('Awaiting video listeners on websocket connections on ws://localhost:' + WEBSOCKET_PORT);
 }
 
-const startVideoStreamProcess = port => {
+const startVideoStreamProcess = () => {
     return exec(videoStreamCmd, (error, stdout, stderr) => {
             //sys.print('stout: ' + stdout);
             //sys.print('stderr: ' + stder);
