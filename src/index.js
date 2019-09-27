@@ -13,5 +13,5 @@ const server = http.Server(app);
 
 server.listen(4000, () => {
     start(app, PORT);
-    console.log(': Base server successfully started on port ' + PORT);
+    console.log('Internal server listening to ' + PORT);
 });
