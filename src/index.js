@@ -4,8 +4,8 @@ import { exec } from "child_process"
 
 config()
 
-const idleTimeout = null
-const videoProcess = null
+let idleTimeout = null
+let videoProcess = null
 
 const {
   MQTT_BROKER_URL,
