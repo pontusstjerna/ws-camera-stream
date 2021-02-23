@@ -12,12 +12,13 @@ const {
   MQTT_USERNAME,
   MQTT_PASSWORD,
   ID,
-  VIDEO_STREAMING_URL,
-  VIDEO_STREAM_COMMAND,
+  VIDEO_STREAM_HOST,
+  VIDEO_STREAM_COMMAND = `ffmpeg -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k`,
+  IDLE_TIMEOUT_MS = "300000",
 } = process.env
 
 const mqttClient = mqtt.connect({
-  hostname: MQTT_BROKER_URL || "127.0.0.1",
+  hostname: MQTT_BROKER_URL,
   username: MQTT_USERNAME,
   password: MQTT_PASSWORD,
   protocol: "mqtt",
@@ -64,15 +65,15 @@ mqttClient.on("connect", () => {
         videoProcess.kill()
       }
       videoProcess = null
-    }, parseInt(process.env.IDLE_TIMEOUT_MS) || 5 * 60 * 1000) // Keep alive for 5 minutes, then turn off
+    }, parseInt(IDLE_TIMEOUT_MS)) // Keep alive for 5 minutes, then turn off
   }
 })
 
 const startVideoStreamProcess = () => {
-  const defaultCommand = `ffmpeg -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k ${VIDEO_STREAMING_URL}`
+  const videoStreamUrl = `${VIDEO_STREAM_HOST}/video_stream/${ID}`
 
   return exec(
-    VIDEO_STREAM_COMMAND || defaultCommand,
+    `${VIDEO_STREAM_COMMAND} ${videoStreamUrl}`,
     (error, stdout, stderr) => {
       console.log("Video streaming ended.")
 
