@@ -13,7 +13,7 @@ const {
   MQTT_PASSWORD,
   ID,
   VIDEO_STREAM_HOST,
-  VIDEO_STREAM_COMMAND = `ffmpeg -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k`,
+  VIDEO_STREAM_COMMAND = "ffmpeg -s 640x480 -f video4linux2 -i /dev/video0 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 1000k",
   IDLE_TIMEOUT_MS = "300000",
 } = process.env
 
@@ -40,7 +40,7 @@ mqttClient.on("connect", () => {
   // Don't care about which message
   mqttClient.on("message", () => {
     if (!isRunning()) {
-      console.log("Got message, will startup robot and video!")
+      console.log("Got message, will startup video stream!")
       videoProcess = startVideoStreamProcess()
     }
 
